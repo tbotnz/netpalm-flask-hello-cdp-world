@@ -1,0 +1,41 @@
+{# Simple CDP retrieval service #}
+{#
+eg getconfig payload
+{
+	"operation": "retrieve",
+	"args":{
+		"hosts":["10.0.2.25","10.0.2.23"],
+	}
+}
+!!!! ANY PAYLOAD CAN BE ADDED TO THE ARGS DICT, THESE ARE THEN AVAILABLE IN THE J2 TEMPLATE AS BELOW
+#}
+[
+  {% for host in hosts %}
+  {
+    "supported_methods": [
+      {
+        "operation": "retrieve",
+        "path": "/getconfig",
+        "payload": {
+            "library": "netmiko",
+            "connection_args": {
+                "device_type": "cisco_ios",
+                "host": "{{host}}",
+                "username": "admin",
+                "password": "admin"
+            },
+            "command": "show cdp neighbors",
+            "args": {
+                "use_textfsm": true
+            },
+            "queue_strategy": "fifo"
+        }
+      }
+    ]
+  }{% if not loop.last %},{% endif %}{# THIS IS REQUIRED TO CONSTRUCT THE DATA CORRECTLY #}
+  {% endfor -%}
+]
+
+
+
+
