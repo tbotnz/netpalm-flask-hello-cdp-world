@@ -4,7 +4,7 @@ simple hello world CDP visualisation webapp leveraging netpalm
 ![netpalm](/netpalm_cdp.gif)
 
 ### getting started
-- build a netpalm [netpalm](https://github.com/tbotnz/netpalm) instance and MAKE SURE you have first loaded the ```cdp_service.j2``` service template
+- build a netpalm [netpalm](https://github.com/tbotnz/netpalm) instance and load the ```cdp_service.j2``` service template
 - git clone the project ```git clone https://github.com/tbotnz/netpalm-flask-hello-cdp-world.git && cd netpalm-flask-hello-cdp-world ```
 - update the app.py with your ```NETPALM_SERVER_IP``` ```NETPALM_SERVER_PORT``` ```NETPALM_API_KEY```
 - install the requirements ```pip3 install -r requirements.txt```
